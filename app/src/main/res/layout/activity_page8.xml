@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/page8Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select your hobbies"
+        android:textSize="20sp"
+        android:paddingBottom="16dp"/>
+
+    <!-- Each checkbox with proper height -->
+    <CheckBox
+        android:id="@+id/cb1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Reading"
+        android:textSize="18sp"/>
+
+    <CheckBox
+        android:id="@+id/cb2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Traveling"
+        android:textSize="18sp"/>
+
+    <CheckBox
+        android:id="@+id/cb3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Gaming"
+        android:textSize="18sp"/>
+
+    <CheckBox
+        android:id="@+id/cb4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Cooking"
+        android:textSize="18sp"/>
+
+    <CheckBox
+        android:id="@+id/cb5"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Sports"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btnShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Selected"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"/>
+</LinearLayout>

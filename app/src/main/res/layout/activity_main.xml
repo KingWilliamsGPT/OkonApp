@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TouchBro App Menu"
+            android:textSize="24sp"
+            android:paddingBottom="24dp"
+            android:gravity="center"/>
+
+        <!-- Buttons for each page -->
+        <Button
+            android:id="@+id/btnPage1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 1"/>
+
+        <Button
+            android:id="@+id/btnPage2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 2"/>
+
+        <Button
+            android:id="@+id/btnPage3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 3"/>
+
+        <Button
+            android:id="@+id/btnPage4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 4"/>
+
+        <Button
+            android:id="@+id/btnPage5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 5 - Calculator"/>
+
+        <Button
+            android:id="@+id/btnPage6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 6 - Social Login"/>
+
+        <Button
+            android:id="@+id/btnPage7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 7 - Student Login"/>
+
+        <Button
+            android:id="@+id/btnPage8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 8 - Check Boxes"/>
+
+        <Button
+            android:id="@+id/btnPage9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 9 - Content System"/>
+
+    </LinearLayout>
+</ScrollView>
