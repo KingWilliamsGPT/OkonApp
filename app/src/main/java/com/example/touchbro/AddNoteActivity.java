@@ -11,85 +11,76 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddStudentActivity extends AppCompatActivity {
+public class AddNoteActivity extends AppCompatActivity {
 
-    EditText etMatric, etName, etAge, etDept;
+    EditText etTitle, etContent;
     Button btnSubmit;
-    int editStudentId = -1; // -1 means adding, otherwise editing
+    int editNoteId = -1; // -1 means adding, otherwise editing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_student);
+        setContentView(R.layout.activity_add_note);
 
-        etMatric = findViewById(R.id.etMatric);
-        etName = findViewById(R.id.etName);
-        etAge = findViewById(R.id.etAge);
-        etDept = findViewById(R.id.etDept);
-        btnSubmit = findViewById(R.id.btnSubmitStudent);
+        etTitle = findViewById(R.id.etNoteTitle);
+        etContent = findViewById(R.id.etNoteContent);
+        btnSubmit = findViewById(R.id.btnSubmitNote);
 
-        // Check if we are editing an existing student
-        editStudentId = getIntent().getIntExtra("studentId", -1);
-        if (editStudentId != -1) {
-            setTitle("Edit Student");
-            btnSubmit.setText("Update Student");
-            loadStudentData(editStudentId);
+        // Check if we are editing an existing note
+        editNoteId = getIntent().getIntExtra("noteId", -1);
+        if (editNoteId != -1) {
+            setTitle("Edit Note");
+            btnSubmit.setText("Update Note");
+            loadNoteData(editNoteId);
         } else {
-            setTitle("Add Student");
+            setTitle("Add Note");
         }
 
         btnSubmit.setOnClickListener(v -> {
-            String matric = etMatric.getText().toString().trim();
-            String name = etName.getText().toString().trim();
-            String ageStr = etAge.getText().toString().trim();
-            String dept = etDept.getText().toString().trim();
+            String title = etTitle.getText().toString().trim();
+            String content = etContent.getText().toString().trim();
 
-            if (matric.isEmpty() || name.isEmpty() || ageStr.isEmpty() || dept.isEmpty()) {
+            if (title.isEmpty() || content.isEmpty()) {
                 Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            int age = Integer.parseInt(ageStr);
             ContentResolver resolver = getContentResolver();
             ContentValues cv = new ContentValues();
-            cv.put("matricNo", matric);
-            cv.put("name", name);
-            cv.put("age", age);
-            cv.put("department", dept);
+            cv.put("title", title);
+            cv.put("content", content);
 
-            if (editStudentId != -1) {
-                // Update existing student via ContentProvider
-                Uri studentUri = ContentUris.withAppendedId(StudentProvider.CONTENT_URI, editStudentId);
-                int rows = resolver.update(studentUri, cv, null, null);
+            if (editNoteId != -1) {
+                // Update existing note via ContentProvider
+                Uri noteUri = ContentUris.withAppendedId(NoteProvider.CONTENT_URI, editNoteId);
+                int rows = resolver.update(noteUri, cv, null, null);
                 if (rows > 0) {
-                    Toast.makeText(this, "Student updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(this, "Failed to update student", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to update note", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                // Insert new student via ContentProvider
-                Uri result = resolver.insert(StudentProvider.CONTENT_URI, cv);
+                // Insert new note via ContentProvider
+                Uri result = resolver.insert(NoteProvider.CONTENT_URI, cv);
                 if (result != null) {
-                    Toast.makeText(this, "Student added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(this, "Failed to add student", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to add note", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void loadStudentData(int studentId) {
+    private void loadNoteData(int noteId) {
         ContentResolver resolver = getContentResolver();
-        Uri studentUri = ContentUris.withAppendedId(StudentProvider.CONTENT_URI, studentId);
-        Cursor cursor = resolver.query(studentUri, null, null, null, null);
+        Uri noteUri = ContentUris.withAppendedId(NoteProvider.CONTENT_URI, noteId);
+        Cursor cursor = resolver.query(noteUri, null, null, null, null);
 
         if (cursor != null && cursor.moveToFirst()) {
-            etMatric.setText(cursor.getString(cursor.getColumnIndexOrThrow("matricNo")));
-            etName.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
-            etAge.setText(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow("age"))));
-            etDept.setText(cursor.getString(cursor.getColumnIndexOrThrow("department")));
+            etTitle.setText(cursor.getString(cursor.getColumnIndexOrThrow("title")));
+            etContent.setText(cursor.getString(cursor.getColumnIndexOrThrow("content")));
             cursor.close();
         }
     }

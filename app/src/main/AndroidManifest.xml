@@ -40,11 +40,11 @@
         <activity android:name=".Page8Activity" />
         <activity android:name=".Page9Activity"/>
         <activity android:name=".Page10Activity"/>
-        <activity android:name=".AddStudentActivity"/>
-        <activity android:name=".StudentDetailActivity"/>
+        <activity android:name=".AddNoteActivity"/>
+        <activity android:name=".NoteDetailActivity"/>
 
         <provider
-            android:name=".StudentProvider"
+            android:name=".NoteProvider"
             android:authorities="com.example.touchbro.provider"
             android:exported="false"/>
 

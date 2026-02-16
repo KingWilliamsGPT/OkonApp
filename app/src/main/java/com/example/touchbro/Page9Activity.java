@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class Page9Activity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    StudentAdapter adapter;
-    ArrayList<Student> studentList;
+    NoteAdapter adapter;
+    ArrayList<Note> noteList;
     EditText searchBar;
     FloatingActionButton fab;
     TextView tvEmpty;
@@ -29,43 +29,44 @@ public class Page9Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page9);
+        setTitle("Page 9 - Notes");
 
-        recyclerView = findViewById(R.id.studentRecycler);
+        recyclerView = findViewById(R.id.noteRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchBar = findViewById(R.id.searchBar);
-        fab = findViewById(R.id.fabAddStudent);
+        fab = findViewById(R.id.fabAddNote);
         tvEmpty = findViewById(R.id.tvEmpty);
 
-        studentList = new ArrayList<>();
-        loadStudents("");
+        noteList = new ArrayList<>();
+        loadNotes("");
 
-        adapter = new StudentAdapter(this, studentList);
+        adapter = new NoteAdapter(this, noteList);
         recyclerView.setAdapter(adapter);
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count){}
             @Override public void afterTextChanged(Editable s){
-                loadStudents(s.toString());
+                loadNotes(s.toString());
                 adapter.notifyDataSetChanged();
             }
         });
 
         fab.setOnClickListener(v -> {
-            Intent intent = new Intent(Page9Activity.this, AddStudentActivity.class);
+            Intent intent = new Intent(Page9Activity.this, AddNoteActivity.class);
             startActivity(intent);
         });
     }
 
-    private void loadStudents(String query){
-        studentList.clear();
+    private void loadNotes(String query){
+        noteList.clear();
         ContentResolver resolver = getContentResolver();
-        Uri uri = StudentProvider.CONTENT_URI;
+        Uri uri = NoteProvider.CONTENT_URI;
         String selection = null;
         String[] selectionArgs = null;
 
         if(!query.isEmpty()){
-            selection = "name LIKE ? OR matricNo LIKE ?";
+            selection = "title LIKE ? OR content LIKE ?";
             selectionArgs = new String[]{"%" + query + "%", "%" + query + "%"};
         }
 
@@ -73,20 +74,17 @@ public class Page9Activity extends AppCompatActivity {
 
         if(cursor != null){
             while(cursor.moveToNext()){
-                studentList.add(new Student(
+                noteList.add(new Note(
                         cursor.getInt(cursor.getColumnIndexOrThrow("id")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("matricNo")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("name")),
-                        cursor.getInt(cursor.getColumnIndexOrThrow("age")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("department")),
-                        cursor.getBlob(cursor.getColumnIndexOrThrow("profilePic"))
+                        cursor.getString(cursor.getColumnIndexOrThrow("title")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("content"))
                 ));
             }
             cursor.close();
         }
 
-        // Show or hide "No students" message
-        if(studentList.isEmpty()){
+        // Show or hide "No notes" message
+        if(noteList.isEmpty()){
             tvEmpty.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -98,7 +96,7 @@ public class Page9Activity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        loadStudents(searchBar.getText().toString());
+        loadNotes(searchBar.getText().toString());
         adapter.notifyDataSetChanged();
     }
 }

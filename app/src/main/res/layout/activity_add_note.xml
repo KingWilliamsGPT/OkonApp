@@ -10,35 +10,26 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/etMatric"
+            android:id="@+id/etNoteTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Matric No"/>
+            android:hint="Title"
+            android:textSize="18sp"/>
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etNoteContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"/>
-
-        <EditText
-            android:id="@+id/etAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Age"/>
-
-        <EditText
-            android:id="@+id/etDept"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Department"/>
+            android:layout_height="200dp"
+            android:hint="Write your note here..."
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="12dp"/>
 
         <Button
-            android:id="@+id/btnSubmitStudent"
+            android:id="@+id/btnSubmitNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Student"
+            android:text="Add Note"
             android:layout_marginTop="16dp"/>
     </LinearLayout>
 </ScrollView>

@@ -10,44 +10,41 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class StudentDetailActivity extends AppCompatActivity {
+public class NoteDetailActivity extends AppCompatActivity {
 
-    TextView tvName, tvMatric, tvAge, tvDept;
+    TextView tvTitle, tvContent;
     Button btnEdit;
-    int studentId = -1;
+    int noteId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_detail);
+        setContentView(R.layout.activity_note_detail);
+        setTitle("Note Details");
 
-        tvName = findViewById(R.id.tvDetailName);
-        tvMatric = findViewById(R.id.tvDetailMatric);
-        tvAge = findViewById(R.id.tvDetailAge);
-        tvDept = findViewById(R.id.tvDetailDept);
-        btnEdit = findViewById(R.id.btnEditStudent);
+        tvTitle = findViewById(R.id.tvDetailTitle);
+        tvContent = findViewById(R.id.tvDetailContent);
+        btnEdit = findViewById(R.id.btnEditNote);
 
-        studentId = getIntent().getIntExtra("studentId", -1);
-        loadStudent();
+        noteId = getIntent().getIntExtra("noteId", -1);
+        loadNote();
 
         btnEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(StudentDetailActivity.this, AddStudentActivity.class);
-            intent.putExtra("studentId", studentId);
+            Intent intent = new Intent(NoteDetailActivity.this, AddNoteActivity.class);
+            intent.putExtra("noteId", noteId);
             startActivity(intent);
         });
     }
 
-    private void loadStudent() {
-        if (studentId != -1) {
+    private void loadNote() {
+        if (noteId != -1) {
             ContentResolver resolver = getContentResolver();
-            Uri studentUri = ContentUris.withAppendedId(StudentProvider.CONTENT_URI, studentId);
-            Cursor cursor = resolver.query(studentUri, null, null, null, null);
+            Uri noteUri = ContentUris.withAppendedId(NoteProvider.CONTENT_URI, noteId);
+            Cursor cursor = resolver.query(noteUri, null, null, null, null);
 
             if (cursor != null && cursor.moveToFirst()) {
-                tvName.setText("Name: " + cursor.getString(cursor.getColumnIndexOrThrow("name")));
-                tvMatric.setText("Matric No: " + cursor.getString(cursor.getColumnIndexOrThrow("matricNo")));
-                tvAge.setText("Age: " + cursor.getInt(cursor.getColumnIndexOrThrow("age")));
-                tvDept.setText("Department: " + cursor.getString(cursor.getColumnIndexOrThrow("department")));
+                tvTitle.setText(cursor.getString(cursor.getColumnIndexOrThrow("title")));
+                tvContent.setText(cursor.getString(cursor.getColumnIndexOrThrow("content")));
                 cursor.close();
             }
         }
@@ -56,6 +53,6 @@ public class StudentDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadStudent();
+        loadNote();
     }
 }

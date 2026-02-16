@@ -9,31 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/tvDetailName"
+        <TextView android:id="@+id/tvDetailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"/>
+            android:textSize="22sp"
+            android:textStyle="bold"/>
 
-        <TextView android:id="@+id/tvDetailMatric"
+        <TextView android:id="@+id/tvDetailContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"/>
-
-        <TextView android:id="@+id/tvDetailAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"/>
-
-        <TextView android:id="@+id/tvDetailDept"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"/>
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
 
         <Button
-            android:id="@+id/btnEditStudent"
+            android:id="@+id/btnEditNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Student"
+            android:text="Edit Note"
             android:layout_marginTop="24dp"/>
 
     </LinearLayout>
