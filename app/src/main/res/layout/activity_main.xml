@@ -73,5 +73,11 @@
             android:layout_height="wrap_content"
             android:text="Page 9 - Content System"/>
 
+        <Button
+            android:id="@+id/btnPage10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Page 10 - My Location"/>
+
     </LinearLayout>
 </ScrollView>
