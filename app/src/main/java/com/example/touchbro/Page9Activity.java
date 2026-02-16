@@ -1,11 +1,15 @@
 package com.example.touchbro;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +21,9 @@ public class Page9Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     StudentAdapter adapter;
     ArrayList<Student> studentList;
-    StudentDBHelper dbHelper;
     EditText searchBar;
     FloatingActionButton fab;
+    TextView tvEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +34,8 @@ public class Page9Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchBar = findViewById(R.id.searchBar);
         fab = findViewById(R.id.fabAddStudent);
+        tvEmpty = findViewById(R.id.tvEmpty);
 
-        dbHelper = new StudentDBHelper(this);
         studentList = new ArrayList<>();
         loadStudents("");
 
@@ -55,12 +59,17 @@ public class Page9Activity extends AppCompatActivity {
 
     private void loadStudents(String query){
         studentList.clear();
-        Cursor cursor;
-        if(query.isEmpty()){
-            cursor = dbHelper.getAllStudents();
-        } else {
-            cursor = dbHelper.searchStudents(query);
+        ContentResolver resolver = getContentResolver();
+        Uri uri = StudentProvider.CONTENT_URI;
+        String selection = null;
+        String[] selectionArgs = null;
+
+        if(!query.isEmpty()){
+            selection = "name LIKE ? OR matricNo LIKE ?";
+            selectionArgs = new String[]{"%" + query + "%", "%" + query + "%"};
         }
+
+        Cursor cursor = resolver.query(uri, null, selection, selectionArgs, null);
 
         if(cursor != null){
             while(cursor.moveToNext()){
@@ -74,6 +83,15 @@ public class Page9Activity extends AppCompatActivity {
                 ));
             }
             cursor.close();
+        }
+
+        // Show or hide "No students" message
+        if(studentList.isEmpty()){
+            tvEmpty.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            tvEmpty.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 

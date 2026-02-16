@@ -29,5 +29,12 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"/>
 
+        <Button
+            android:id="@+id/btnEditStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Student"
+            android:layout_marginTop="24dp"/>
+
     </LinearLayout>
 </ScrollView>

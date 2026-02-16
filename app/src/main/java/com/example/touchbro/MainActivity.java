@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnPage1, btnPage2, btnPage3, btnPage4, btnPage5, btnPage6, btnPage7, btnPage8;
+    Button btnPage1, btnPage2, btnPage3, btnPage4, btnPage5, btnPage6, btnPage7, btnPage8, btnPage9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btnPage6 = findViewById(R.id.btnPage6);
         btnPage7 = findViewById(R.id.btnPage7);
         btnPage8 = findViewById(R.id.btnPage8);
+        btnPage9 = findViewById(R.id.btnPage9);
 
         btnPage1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page1Activity.class)));
         btnPage2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page2Activity.class)));
@@ -31,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
         btnPage6.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page6Activity.class)));
         btnPage7.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page7Activity.class)));
         btnPage8.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page8Activity.class)));
+        btnPage9.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Page9Activity.class)));
     }
 }
