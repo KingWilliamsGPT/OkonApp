@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private ArrayList<Student> students;
+    private ArrayList<Note> notes;
     private Context context;
 
-    public StudentAdapter(Context context, ArrayList<Student> students){
+    public NoteAdapter(Context context, ArrayList<Note> notes){
         this.context = context;
-        this.students = students;
+        this.notes = notes;
     }
 
     @NonNull
@@ -29,20 +29,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position){
-        Student s = students.get(position);
-        holder.tv1.setText(s.name);
-        holder.tv2.setText(s.matricNo);
+        Note n = notes.get(position);
+        holder.tv1.setText(n.title);
+        // Show a preview of content (first 50 chars)
+        String preview = n.content.length() > 50 ? n.content.substring(0, 50) + "..." : n.content;
+        holder.tv2.setText(preview);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, StudentDetailActivity.class);
-            intent.putExtra("studentId", s.id);
+            Intent intent = new Intent(context, NoteDetailActivity.class);
+            intent.putExtra("noteId", n.id);
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount(){
-        return students.size();
+        return notes.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

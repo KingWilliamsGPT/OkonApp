@@ -6,13 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class StudentDBHelper extends SQLiteOpenHelper {
+public class NoteDBHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "studentDB";
+    private static final String DB_NAME = "notesDB";
     private static final int DB_VERSION = 1;
-    private static final String TABLE_NAME = "students";
+    private static final String TABLE_NAME = "notes";
 
-    public StudentDBHelper(Context context) {
+    public NoteDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -20,11 +20,8 @@ public class StudentDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "matricNo TEXT," +
-                "name TEXT," +
-                "age INTEGER," +
-                "department TEXT," +
-                "profilePic BLOB)";
+                "title TEXT," +
+                "content TEXT)";
         db.execSQL(query);
     }
 
@@ -34,33 +31,30 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Insert new student
-    public long insertStudent(String matric, String name, int age, String dept, byte[] profilePic) {
+    // Insert new note
+    public long insertNote(String title, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("matricNo", matric);
-        cv.put("name", name);
-        cv.put("age", age);
-        cv.put("department", dept);
-        cv.put("profilePic", profilePic);
+        cv.put("title", title);
+        cv.put("content", content);
         return db.insert(TABLE_NAME, null, cv);
     }
 
-    // Get all students
-    public Cursor getAllStudents() {
+    // Get all notes
+    public Cursor getAllNotes() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
-    // Search students
-    public Cursor searchStudents(String query) {
+    // Search notes
+    public Cursor searchNotes(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE name LIKE ? OR matricNo LIKE ?",
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE title LIKE ? OR content LIKE ?",
                 new String[]{"%" + query + "%", "%" + query + "%"});
     }
 
-    // Get student by ID
-    public Cursor getStudentById(int id) {
+    // Get note by ID
+    public Cursor getNoteById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE id=?", new String[]{String.valueOf(id)});
     }

@@ -13,71 +13,81 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TouchBro App Menu"
+            android:text="SEN PROJECT"
             android:textSize="24sp"
             android:paddingBottom="24dp"
             android:gravity="center"/>
 
-        <!-- Buttons for each page -->
+        <!-- Buttons for each SCREEN -->
         <Button
             android:id="@+id/btnPage1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 1"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 1"/>
 
         <Button
             android:id="@+id/btnPage2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 2"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 2"/>
 
         <Button
             android:id="@+id/btnPage3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 3"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 3"/>
 
         <Button
             android:id="@+id/btnPage4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 4"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 4"/>
 
         <Button
             android:id="@+id/btnPage5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 5 - Calculator"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 5 - Calculator"/>
 
         <Button
             android:id="@+id/btnPage6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 6 - Social Login"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 6 - Social Login"/>
 
         <Button
             android:id="@+id/btnPage7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 7 - Student Login"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 7 - Student Login"/>
 
         <Button
             android:id="@+id/btnPage8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 8 - Check Boxes"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 8 - Check Boxes"/>
 
         <Button
             android:id="@+id/btnPage9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 9 - Content System"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 9 - Notes"/>
 
         <Button
             android:id="@+id/btnPage10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Page 10 - My Location"/>
+            android:backgroundTint="@color/green"
+            android:text="SCREEN 10 - My Location"/>
 
     </LinearLayout>
 </ScrollView>

@@ -10,25 +10,25 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class StudentProvider extends ContentProvider {
+public class NoteProvider extends ContentProvider {
 
     public static final String AUTHORITY = "com.example.touchbro.provider";
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/students");
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
 
-    private static final int STUDENTS = 1;
-    private static final int STUDENT_ID = 2;
+    private static final int NOTES = 1;
+    private static final int NOTE_ID = 2;
 
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        uriMatcher.addURI(AUTHORITY, "students", STUDENTS);
-        uriMatcher.addURI(AUTHORITY, "students/#", STUDENT_ID);
+        uriMatcher.addURI(AUTHORITY, "notes", NOTES);
+        uriMatcher.addURI(AUTHORITY, "notes/#", NOTE_ID);
     }
 
-    private StudentDBHelper dbHelper;
+    private NoteDBHelper dbHelper;
 
     @Override
     public boolean onCreate() {
-        dbHelper = new StudentDBHelper(getContext());
+        dbHelper = new NoteDBHelper(getContext());
         return true;
     }
 
@@ -40,12 +40,12 @@ public class StudentProvider extends ContentProvider {
         Cursor cursor;
 
         switch (uriMatcher.match(uri)) {
-            case STUDENTS:
-                cursor = db.query("students", projection, selection, selectionArgs, null, null, sortOrder);
+            case NOTES:
+                cursor = db.query("notes", projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-            case STUDENT_ID:
+            case NOTE_ID:
                 String id = uri.getLastPathSegment();
-                cursor = db.query("students", projection, "id=?", new String[]{id}, null, null, sortOrder);
+                cursor = db.query("notes", projection, "id=?", new String[]{id}, null, null, sortOrder);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -60,12 +60,12 @@ public class StudentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        if (uriMatcher.match(uri) != STUDENTS) {
+        if (uriMatcher.match(uri) != NOTES) {
             throw new IllegalArgumentException("Invalid URI for insert: " + uri);
         }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long id = db.insert("students", null, values);
+        long id = db.insert("notes", null, values);
 
         if (id != -1 && getContext() != null) {
             getContext().getContentResolver().notifyChange(uri, null);
@@ -81,12 +81,12 @@ public class StudentProvider extends ContentProvider {
         int rowsUpdated;
 
         switch (uriMatcher.match(uri)) {
-            case STUDENT_ID:
+            case NOTE_ID:
                 String id = uri.getLastPathSegment();
-                rowsUpdated = db.update("students", values, "id=?", new String[]{id});
+                rowsUpdated = db.update("notes", values, "id=?", new String[]{id});
                 break;
-            case STUDENTS:
-                rowsUpdated = db.update("students", values, selection, selectionArgs);
+            case NOTES:
+                rowsUpdated = db.update("notes", values, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -104,12 +104,12 @@ public class StudentProvider extends ContentProvider {
         int rowsDeleted;
 
         switch (uriMatcher.match(uri)) {
-            case STUDENT_ID:
+            case NOTE_ID:
                 String id = uri.getLastPathSegment();
-                rowsDeleted = db.delete("students", "id=?", new String[]{id});
+                rowsDeleted = db.delete("notes", "id=?", new String[]{id});
                 break;
-            case STUDENTS:
-                rowsDeleted = db.delete("students", selection, selectionArgs);
+            case NOTES:
+                rowsDeleted = db.delete("notes", selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -125,10 +125,10 @@ public class StudentProvider extends ContentProvider {
     @Override
     public String getType(@NonNull Uri uri) {
         switch (uriMatcher.match(uri)) {
-            case STUDENTS:
-                return "vnd.android.cursor.dir/vnd." + AUTHORITY + ".students";
-            case STUDENT_ID:
-                return "vnd.android.cursor.item/vnd." + AUTHORITY + ".students";
+            case NOTES:
+                return "vnd.android.cursor.dir/vnd." + AUTHORITY + ".notes";
+            case NOTE_ID:
+                return "vnd.android.cursor.item/vnd." + AUTHORITY + ".notes";
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
