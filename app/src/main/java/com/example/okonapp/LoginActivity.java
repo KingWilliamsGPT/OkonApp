@@ -3,7 +3,6 @@ package com.example.okonapp;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.okonapp.databinding.ActivityLoginBinding; // Note: Assuming standard ViewBinding but I'll use findViewById for simplicity if not enabled.
 
 public class LoginActivity extends AppCompatActivity {
     @Override
