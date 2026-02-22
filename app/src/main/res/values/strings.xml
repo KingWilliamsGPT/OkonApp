@@ -1,3 +1,40 @@
 <resources>
-    <string name="app_name">OkonApp</string>
+    <string name="app_name">OkonApp Assignments</string>
+    <string name="dashboard_title">Android Assignments</string>
+    <string name="dashboard_subtitle">Select an exercise to view</string>
+
+    <!-- Exercise Labels -->
+    <string name="ex_linear_layout">Linear Layout (Page 6)</string>
+    <string name="ex_linear_layout_desc">Name, Age, Mobile Number in Linear Layout</string>
+    
+    <string name="ex_absolute_layout">Absolute Layout (Page 6)</string>
+    <string name="ex_absolute_layout_desc">Name, Age, Mobile Number in Absolute Layout</string>
+    
+    <string name="ex_login_personal">Login &amp; Personal Info (Page 7)</string>
+    <string name="ex_login_personal_desc">User input and personal info display</string>
+    
+    <string name="ex_controls">Interactive Controls (Page 8 &amp; 15)</string>
+    <string name="ex_controls_desc">Bluetooth toggle, Checkboxes, and Radio Buttons</string>
+    
+    <string name="ex_calculator">Simple Calculator (Page 8)</string>
+    <string name="ex_calculator_desc">Basic arithmetic operations</string>
+    
+    <string name="ex_forms">Social &amp; Registration Forms (Page 10)</string>
+    <string name="ex_forms_desc">Login forms for Social and Student systems</string>
+    
+    <string name="ex_webview">Web Navigator (Page 19)</string>
+    <string name="ex_webview_desc">Navigate to URLs using WebView</string>
+    
+    <string name="ex_todo">TODO App (Page 21)</string>
+    <string name="ex_todo_desc">Full-featured TODO with Content Provider</string>
+    
+    <string name="ex_location">Location Finder (Page 23)</string>
+    <string name="ex_location_desc">Get current device location</string>
+
+    <!-- General Labels -->
+    <string name="btn_navigate">Navigate</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
 </resources>

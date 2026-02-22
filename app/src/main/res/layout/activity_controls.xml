@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Interactive Controls"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Bluetooth Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutlineVariant">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bluetooth Status"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <ToggleButton
+                    android:id="@+id/tb_bluetooth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="ON"
+                    android:textOff="OFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Checkboxes Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Interests (Checkboxes)"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/checkbox_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp">
+            <CheckBox android:id="@+id/cb1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sports" />
+            <CheckBox android:id="@+id/cb2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Music" />
+            <CheckBox android:id="@+id/cb3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reading" />
+            <CheckBox android:id="@+id/cb4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Travel" />
+            <CheckBox android:id="@+id/cb5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cooking" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_toast_checkboxes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast selected checkboxes"
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.Material3.Button.TonalButton" />
+
+        <!-- Radio Buttons Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radio Buttons (No Group)"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginBottom="8dp" />
+
+        <RadioButton android:id="@+id/rb_standalone1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Standalone Option 1" />
+        <RadioButton android:id="@+id/rb_standalone2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Standalone Option 2" android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radio Buttons (With Group)"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/rg_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton android:id="@+id/rb_group1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Group Option A" />
+            <RadioButton android:id="@+id/rb_group2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Group Option B" />
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>
